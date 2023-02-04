@@ -3,23 +3,23 @@
 
 #include <vector>
 #include <iostream>
+#include <algorithm>
+
+class	NotFound : public std::exception {
+			
+	public://nested class cannot access private members of enclosing class
+		virtual const char *what() const throw() {
+			return("number not found\n");
+		}
+};
 
 template <typename T>
-int	easyfind(T &a, int b) {
-
-	int found = 0;
-	for (size_t i = 0; i < a.size(); i++) {
-		if (b == a[i]){
-			std::cout << "BInGO!\n";
-			found = 1;
-		}
-	}
-
-	if (!found) {
-		std::cout << "number not found :(\n";
-		return -1;
-	}
-	return 0;
+typename T::iterator easyfind(T &t, int value)
+{
+	typename T::iterator res = std::find(t.begin(), t.end(), value);
+	if (res == t.end())
+		throw NotFound();
+	return res;
 }
 
 #endif

@@ -9,8 +9,21 @@ int	main() {
 	numbers.push_back(6);
 	numbers.push_back(8);
 
-	easyfind(numbers, 2);
-	easyfind(numbers, 12);
+	try {
+		int find = *(easyfind(numbers, 2));
+		std::cout << find << " found.\n";
+	}
+	catch(std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	try {
+		int find = *(easyfind(numbers, 12));
+		std::cout << find << " found.\n";
+	}
+	catch(std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
 
 
 
