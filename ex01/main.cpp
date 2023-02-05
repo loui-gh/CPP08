@@ -2,6 +2,17 @@
 
 int	main() {
 
+	Span addy(20);
+	try {
+		for (size_t i = 0; i < 22; i++) {
+			addy.addNumber(i);
+		}
+	}
+	catch(std::exception &e) {
+		std::cout << e.what() << std::endl;
+	}
+
+	
 	Span tool(14);
 	Span empty(12);
 	tool.addNumber(112);
@@ -9,9 +20,16 @@ int	main() {
 	tool.addNumber(12);
 	tool.addNumber(15);
 
+	/*copy constructor*/
+	Span test(tool);
+	/*assignment operator*/
 	try {
 		std::cout << "shortest span TOOL = " << tool.shortestSpan() << std::endl;
+		//std::cout << "shortest span  TEST COPY = " << test.shortestSpan() << std::endl;
+
 		std::cout << "longest span TOOL = " << tool.longestSpan() << std::endl;
+		//std::cout << "longest span TEST COPY = " << test.longestSpan() << std::endl;
+
 		std::cout << "shortest span EMPTY = " << empty.shortestSpan() << std::endl;
 	}
 	catch(std::exception &e) {
@@ -26,5 +44,8 @@ int	main() {
 	catch(std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
+
+
+	
 	return 0;
 }

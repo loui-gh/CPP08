@@ -8,7 +8,7 @@ Span::Span(unsigned int N) {
 
 	
 	this->_maxN = N;
-	this->_g1.reserve(N);//preallocates memory for N elements. NOTE, this does not limit size!!
+	//this->_g1.reserve(N);//preallocates memory for N elements. NOTE, this does not limit size!!
 }
 
 Span::Span(Span const & input) {
@@ -30,7 +30,7 @@ Span::~Span(void) {
 
 void	Span::addNumber(int n) {
 
-	if (this->_g1.size() > this->_maxN)
+	if (this->_g1.size() >= this->_maxN)
 		throw MaxElementsReachedException();
 	this->_g1.push_back(n);
 }
@@ -52,6 +52,6 @@ int		Span::shortestSpan() {
 		throw NotEnoughElementsException();
 
 	std::sort(this->_g1.begin(), this->_g1.end());
-	int shortest_span = std::abs(this->_g1[1] - this->_g1[1]);
+	int shortest_span = std::abs(this->_g1[1] - this->_g1[0]);
 	return shortest_span;
 }

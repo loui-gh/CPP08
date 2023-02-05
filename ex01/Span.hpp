@@ -32,7 +32,7 @@ class Span {
 			
 			public://nested class cannot access private members of enclosing class
 				virtual const char *what() const throw() {
-					return("Error: you cannot add anymore elements\n");
+					return("Error: you cannot add any more elements\n");
 				}
 		};
 
