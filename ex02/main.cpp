@@ -6,7 +6,7 @@
 /*   By: Loui :) <loflavel@students.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:39:53 by Loui :)           #+#    #+#             */
-/*   Updated: 2023/02/08 16:00:02 by Loui :)          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:16:26 by Loui :)          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,9 @@ int main()
 	mstack.push(737);
 	//[...]
 	mstack.push(0);
+	
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
-
-
 	++it;
 	--it;
 	while (it != ite)
@@ -40,15 +39,31 @@ int main()
 	//std::stack<int> s(mstack);
 
 	/*Copy constructor*/
+	mstack.pop();//to test
+	mstack.pop();
 	MutantStack<int> copy_mstack(mstack);
-	MutantStack<int>::iterator c_it = mstack.begin();
-	MutantStack<int>::iterator c_ite = mstack.end();
+
+	MutantStack<int>::iterator c_it = copy_mstack.begin();
+	MutantStack<int>::iterator c_ite = copy_mstack.end();
 	++c_it;
 	--c_it;
 	while (c_it != c_ite)
 	{
-		std::cout << "copy_mstack: " << *it << std::endl;
+		std::cout << "copy_mstack: " << *c_it << std::endl;
 		++c_it;
+	}
+	
+	/*assignment operator*/
+	MutantStack<int> assign;
+	assign = mstack;
+	MutantStack<int>::iterator a_it = assign.begin();
+	MutantStack<int>::iterator a_ite = assign.end();
+	++a_it;
+	--a_it;
+	while (a_it != a_ite)
+	{
+		std::cout << "assign: " << *a_it << std::endl;
+		++a_it;
 	}
 	
 	/*std::list*/
