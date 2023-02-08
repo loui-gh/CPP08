@@ -6,7 +6,7 @@
 /*   By: Loui :) <loflavel@students.42wolfsburg.de> +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 12:39:53 by Loui :)           #+#    #+#             */
-/*   Updated: 2023/02/07 12:39:55 by Loui :)          ###   ########.fr       */
+/*   Updated: 2023/02/08 16:00:02 by Loui :)          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,29 @@ int main()
 	mstack.push(0);
 	MutantStack<int>::iterator it = mstack.begin();
 	MutantStack<int>::iterator ite = mstack.end();
+
+
 	++it;
 	--it;
 	while (it != ite)
 	{
-	std::cout << *it << std::endl;
-	++it;
+		std::cout << "OG mstack: " << *it << std::endl;
+		++it;
 	}
-	std::stack<int> s(mstack);
+	//std::stack<int> s(mstack);
 
+	/*Copy constructor*/
+	MutantStack<int> copy_mstack(mstack);
+	MutantStack<int>::iterator c_it = mstack.begin();
+	MutantStack<int>::iterator c_ite = mstack.end();
+	++c_it;
+	--c_it;
+	while (c_it != c_ite)
+	{
+		std::cout << "copy_mstack: " << *it << std::endl;
+		++c_it;
+	}
+	
 	/*std::list*/
 	std::list<std::string> mlist;
 	mlist.push_front("Louisa");
