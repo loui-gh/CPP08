@@ -12,22 +12,19 @@
 
 #include "Span.hpp"
 
-Span::Span() : _maxN(0) {
-
+Span::Span() {
 }
 
 Span::Span(unsigned int N) {
-
-	
 	this->_maxN = N;
-	//this->_g1.reserve(N);//preallocates memory for N elements. NOTE, this does not limit size!!
 }
-
+/*copy constructor*/
 Span::Span(Span const & input) {
 
-	*this = input;
+	this->_maxN = input._maxN;
+	this->_g1 = input._g1;
 }
-
+/*assignment operator*/
 Span const & Span::operator=(Span const & input) {
 
 	this->~Span();
@@ -42,9 +39,12 @@ Span::~Span(void) {
 
 void	Span::addNumber(int n) {
 
-	if (this->_g1.size() >= this->_maxN)
+	if (this->_g1.size() == this->_maxN) {
 		throw MaxElementsReachedException();
-	this->_g1.push_back(n);
+		return ;
+	}
+	else 
+		this->_g1.push_back(n);
 }
 
 int	Span::longestSpan() {
@@ -64,6 +64,16 @@ int		Span::shortestSpan() {
 		throw NotEnoughElementsException();
 
 	std::sort(this->_g1.begin(), this->_g1.end());
-	int shortest_span = std::abs(this->_g1[1] - this->_g1[0]);
-	return shortest_span;
+	int min_diff = INT_MAX; // initialize the minimum difference to maximum integer value
+	
+    // iterate over the elements of the vector and calculate the difference between adjacent elements
+    for (size_t i = 0; i < this->_g1.size(); i++) {
+        int diff = std::abs(this->_g1[i] - this->_g1[i+1]);
+		//std::cout << _g1[i] << " ";
+        if (diff < min_diff) { // if the difference is smaller than the current minimum, update the values
+            min_diff = diff;
+        }
+    }
+
+	return min_diff;
 }

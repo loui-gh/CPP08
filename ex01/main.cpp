@@ -12,21 +12,31 @@
 
 #include "Span.hpp"
 
-int	main() {
+//Test your Span at least with a minimum of 10 000 numbers. More would be even better.
+int main() {
+	
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+	std::cout << sp.shortestSpan() << std::endl;
+	std::cout << sp.longestSpan() << std::endl;
 
 	Span addy(20);
-	try {
-		for (size_t i = 0; i < 22; i++) {
-			addy.addNumber(i);
+
+	for (size_t i = 0; i < 22; i++) {
+		try {
+			addy.addNumber(i); 
+		}  catch(std::exception &e) {
+			std::cout << e.what() << std::endl;
 		}
 	}
-	catch(std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
 
-	
+
 	Span tool(14);
-	Span empty(12);
+	//Span empty(12);
 	tool.addNumber(112);
 	tool.addNumber(21);
 	tool.addNumber(12);
@@ -42,7 +52,7 @@ int	main() {
 		std::cout << "longest span TOOL = " << tool.longestSpan() << std::endl;
 		//std::cout << "longest span TEST COPY = " << test.longestSpan() << std::endl;
 
-		std::cout << "shortest span EMPTY = " << empty.shortestSpan() << std::endl;
+		//std::cout << "shortest span EMPTY = " << empty.shortestSpan() << std::endl;
 	}
 	catch(std::exception &e) {
 		std::cout << e.what() << std::endl;
@@ -50,14 +60,26 @@ int	main() {
 
 	Span too_much(2);
 	try {
-		for (size_t i = 0; i < 100; i++)
+		for (size_t i = 0; i < 2; i++)
 			too_much.addNumber(i);
 	}
 	catch(std::exception &e) {
 		std::cout << e.what() << std::endl;
 	}
 
+	//10,000 numbers is a party!
+	std::cout << "\nBig Bohemoth\n";
+	Span bigBoy(10000);
+    std::srand(static_cast<unsigned>(std::time(0)));
 
-	
+    for (int i = 0; i < 10000; ++i) {
+       try{
+			bigBoy.addNumber(std::rand());
+	   	} catch (std::exception &e){
+			std::cout << e.what() << std::endl;
+		}
+    }
+
 	return 0;
 }
+
